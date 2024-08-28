@@ -70,5 +70,5 @@ pipeline{
 
 def getVersion(){
     String baseVersion = readMavenPom file: "pom.xml"
-    return baseVersion
+    return baseVersion.project.version
 }
