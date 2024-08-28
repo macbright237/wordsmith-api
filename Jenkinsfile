@@ -12,7 +12,11 @@ pipeline{
         }
         stage("Maven test"){
             steps{
-                sh"mvn test"
+                script{
+                    def componentVersion = getVersion()
+                    println componentVersion
+                    sh"mvn test"
+                }
             }
         }
         stage("Maven Package"){
@@ -62,4 +66,9 @@ pipeline{
             }
         }
     }
+}
+
+def getVersion(){
+    String baseVersion = readMavenPom file: "pom.xml"
+    return baseVersion
 }
