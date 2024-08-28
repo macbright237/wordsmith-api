@@ -3,7 +3,6 @@ pipeline{
     tools {
         maven 'maven-3.9.9' 
     }
-    def componentVersion = getVersion()
     stages{
         stage("Clone"){
             steps{
@@ -46,6 +45,7 @@ pipeline{
         stage("Upload jar to Nexus"){
             steps{
                 script{
+                    def componentVersion = getVersion()
                     nexusArtifactUploader(
                         nexusVersion: 'nexus3',
                         protocol: 'http',
