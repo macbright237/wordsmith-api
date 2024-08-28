@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage("Clone"){
             steps{
-                git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/Primus-Learning/wordsmith-api.git'
+                git branch: 'jenkins', credentialsId: 'github-token', url: 'https://github.com/Primus-Learning/wordsmith-api.git'
                 sh"ls -l"
             }
         }
