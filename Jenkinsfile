@@ -71,5 +71,13 @@ pipeline{
 def getVersion(){
     def pom = readMavenPom file: 'pom.xml'
     def baseVersion = pom.version
-    return baseVersion
+    def finalVersion
+    if(env.BRANCH_NAME == "develop"){
+        finalVersion = "${baseVersion}-rc"
+    }else if(env.BRANCH_NAME == "main"){
+        finalVersion = baseVersion
+    }else{
+        finalVersion = "${baseVersion}-${env.BRANCH_NAME}"
+    }
+    return finalVersion
 }
