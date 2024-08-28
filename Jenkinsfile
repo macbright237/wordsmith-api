@@ -8,6 +8,7 @@ pipeline{
             steps{
                 git branch: 'jenkins', credentialsId: 'github-token', url: 'https://github.com/Primus-Learning/wordsmith-api.git'
                 sh"ls -l"
+                
             }
         }
         stage("Maven test"){
