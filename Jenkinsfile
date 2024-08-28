@@ -3,6 +3,7 @@ pipeline{
     tools {
         maven 'maven-3.9.9' 
     }
+    def componentVersion = getVersion()
     stages{
         stage("Clone"){
             steps{
@@ -13,8 +14,6 @@ pipeline{
         stage("Maven test"){
             steps{
                 script{
-                    def componentVersion = getVersion()
-                    println componentVersion
                     sh"mvn test"
                 }
             }
@@ -52,7 +51,7 @@ pipeline{
                         protocol: 'http',
                         nexusUrl: '3.138.155.75:8081',
                         groupId: 'com.example',
-                        version:  "1.0-SNAPSHOT",
+                        version: componentVersion,
                         repository: 'maven-snapshots',
                         credentialsId: 'nexus-creds',
                         artifacts: [
