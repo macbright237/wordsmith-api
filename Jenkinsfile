@@ -72,6 +72,8 @@ pipeline{
                     withAWS(region:'us-east-2',credentials:'aws-creds'){
                         def componentVersion = getVersion()
                         sh"""
+                        ls -l
+                        ls -l target/
                         aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 421740842601.dkr.ecr.us-east-2.amazonaws.com
                         docker build -t wordsmith-api .
                         docker tag wordsmith-api:latest 421740842601.dkr.ecr.us-east-2.amazonaws.com/wordsmith-api:${componentVersion}
