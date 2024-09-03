@@ -66,6 +66,17 @@ pipeline{
                 }
             }
         }
+        stage("Docker build and Push"){
+            steps{
+                script{
+                    withAWS(region:'us-east-2',credentials:'aws-creds'){
+                        sh"""
+                        aws s3 ls
+                        """
+                    }
+                }
+            }
+        }
     }
 }
 
