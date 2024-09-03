@@ -47,21 +47,22 @@ pipeline{
             steps{
                 script{
                     def componentVersion = getVersion()
-                    nexusArtifactUploader(
-                        nexusVersion: 'nexus3',
-                        protocol: 'http',
-                        nexusUrl: '3.138.155.75:8081',
-                        groupId: 'com.example',
-                        version: componentVersion,
-                        repository: 'maven-releases',
-                        credentialsId: 'nexus-creds',
-                        artifacts: [
-                            [artifactId: 'words',
-                            classifier: '',
-                            file: "${WORKSPACE}/target/words.jar",
-                            type: 'jar']
-                        ]
-                    )
+                    // nexusArtifactUploader(
+                    //     nexusVersion: 'nexus3',
+                    //     protocol: 'http',
+                    //     nexusUrl: '3.138.155.75:8081',
+                    //     groupId: 'com.example',
+                    //     version: componentVersion,
+                    //     repository: 'maven-releases',
+                    //     credentialsId: 'nexus-creds',
+                    //     artifacts: [
+                    //         [artifactId: 'words',
+                    //         classifier: '',
+                    //         file: "${WORKSPACE}/target/words.jar",
+                    //         type: 'jar']
+                    //     ]
+                    // )
+                    echo "pushed artifact"
                 }
             }
         }
