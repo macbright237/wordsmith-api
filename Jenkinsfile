@@ -71,7 +71,7 @@ pipeline{
                 script{
                     withAWS(region:'us-east-2',credentials:'aws-creds'){
                         sh"""
-                        aws s3 ls
+                        aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 421740842601.dkr.ecr.us-east-2.amazonaws.com
                         """
                     }
                 }
