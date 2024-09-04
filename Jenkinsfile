@@ -83,6 +83,22 @@ pipeline{
                 }
             }
         }
+        stage("deploy to Dev"){
+            steps{
+                script{
+                    withAWS(region:'us-east-2',credentials:'eks-user'){
+                        def componentVersion = getVersion()
+                        String componentImage = "421740842601.dkr.ecr.us-east-2.amazonaws.com/wordsmith-api:${componentVersion}"
+                        dir("${WORKSPACE}"){
+                            sh"""
+                                aws eks update-kubeconfig --name dev-cluster
+                                kubectl apply -f deployment.yaml -n wordsmith
+                            """
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
