@@ -93,7 +93,7 @@ pipeline{
                             sh"""
                                 aws eks update-kubeconfig --name dev-cluster
                                 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.15/2024-07-12/bin/linux/amd64/kubectl
-                                chmod U+x ./kubectl
+                                chmod u+x ./kubectl
                                 ./kubectl apply -f deployment.yaml -n wordsmith
                                 ./kubectl get all -n wordsmith
                             """
