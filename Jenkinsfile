@@ -111,7 +111,7 @@ def getVersion(){
     }else if(env.BRANCH_NAME == "main"){
         finalVersion = baseVersion
     }else{
-        finalVersion = "${baseVersion}-${env.BRANCH_NAME}"
+        finalVersion = "${baseVersion}-${BUILD_NUMBER}-${env.BRANCH_NAME}"
     }
     return finalVersion
 }
