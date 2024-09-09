@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.9.9'
+    }
+    stages {
+        stage('clone') {
+            steps {
+                git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/Primus-Learning/wordsmith-api.git'
+            }
+        }
+
+        stage("Maven Test"){
+            steps{
+              sh"mvn test"
+            }
+        }
+        stage("Maven package"){
+            steps{
+                sh"mvn clean package"
+                sh"ls -l target/"
+            }
+        }
+    }
+}
